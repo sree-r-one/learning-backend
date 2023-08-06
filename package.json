@@ -1,0 +1,19 @@
+{
+  "name": "backend-learning",
+  "version": "1.0.0",
+  "description": "learning backend and projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sree-r-one/backend-learning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sree-r-one/backend-learning/issues"
+  },
+  "homepage": "https://github.com/sree-r-one/backend-learning#readme"
+}
