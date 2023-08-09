@@ -1,7 +1,11 @@
 const http = require("http");
 
-const server = http.createServer((req, res) => {});
-
-server.listen(3000, () => {
-  console.log("Server is listening on PORT 3000");
+// has a callback function that is executed everytime a request is received
+const server = http.createServer((req, res) => {
+  console.log("user hit the server");
+  res.writeHead(200, { "content-type": "text/html" });
+  res.write("<h1>home page</h1>");
+  res.end("home page");
 });
+
+server.listen(5000);
