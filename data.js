@@ -597,4 +597,13 @@ const products = [
     ],
   },
 ];
-module.exports = { status, products };
+
+const people = [
+  { id: 1, name: "John Doe", age: 22 },
+  { id: 2, name: "Jane Doe", age: 23 },
+  { id: 3, name: "John Smith", age: 24 },
+  { id: 4, name: "Jane Smith", age: 25 },
+  { id: 5, name: "John Doe", age: 26 },
+  { id: 6, name: "Jane Doe", age: 27 },
+];
+module.exports = { status, products, people };

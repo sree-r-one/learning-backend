@@ -1,54 +1,47 @@
 const express = require("express");
 const app = express();
-const { status, products } = require("./data");
 const PORT = 5000;
+const { people } = require("./data");
 
-app.get("/", (req, res) => {
-  res.send("<h1>Home Page</h1><a href='/api/v1/status'>Status</a>");
+const logger = (req, res, next) => {
+  const { method, url } = req;
+  const time = new Date().getFullYear();
+  console.log(method, url, time);
+  next();
+};
+
+app.use(express.json());
+
+app.get("/", logger, (req, res) => {
+  res.send("home");
 });
 
-app.get("/api/v1/", (req, res) => {
-  res.json(products);
+app.get("/api/people", (req, res) => {
+  res.status(200).json({ success: true, data: people });
 });
 
-// general path
-app.get("/api/v1/status", (req, res) => {
-  const newProducts = products.map((product) => {
-    const { id, title, price } = product;
-    return { id, title, price };
-  });
-  res.json(newProducts);
-});
+app.post("/api/people", (req, res) => {
+  console.log(req.body);
+  const { name } = req.body;
 
-// route parameters
-app.get("/api/v1/status/:productID", (req, res) => {
-  const { productID } = req.params;
-  const singleProduct = products.find(
-    (product) => product.id === Number(productID)
-  );
-
-  // Error handling
-  if (!singleProduct) {
-    res.status(404).send("Product Does Not Exist");
+  if (!name) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "Please provide name value" });
   }
-
-  res.json(singleProduct);
+  res
+    .status(201)
+    .json({ success: true, person: name, data: [...people, name] });
 });
 
-app.get("/api/v1/query", (req, res) => {
-  const { search, limit } = req.query;
-  let sortedProducts = [...products];
+app.put("/api/people/:id", (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  console.log(id, name);
+});
 
-  console.log(search);
-  if (search) {
-    sortedProducts = sortedProducts.filter((product) => {
-      return product.title.startsWith(search);
-    });
-  }
-
-  // console.log(sortedProducts);
-  res.status(200).json(sortedProducts);
-  // res.send("hello");
+app.get("/about", (req, res) => {
+  res.send("about");
 });
 
 app.listen(PORT, () => {
