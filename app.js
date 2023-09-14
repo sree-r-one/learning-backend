@@ -1,22 +1,38 @@
-const express = require('express');
+require("dotenv").config();
+require("express-async-errors");
+
+const express = require("express");
 const app = express();
 
-const connectDB = require("./db/connect")
+const notFoundMiddleware = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
-app.get('/',(req,res)=>{
-    res.send('Home Page')
-})
+// middleware
+app.use(express.json());
 
+const connectDB = require("./db/connect");
+const productsRouter = require("./routes/products");
 
-const port = 3000;
+app.get("/", (req, res) => {
+  res.send("Home Page");
+});
 
-const start = async ()=>{
-    try {
-        await connectDB()
-        app.listen(port,()=> console.log('listening on port 3000'))
-    } catch (error) {
-        console.log(error)
-    }
-}
+// routes
+app.use("/api/v1/products", productsRouter);
 
-start() 
+// middleware
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
+
+const port = process.env.PORT || 5000;
+
+const start = async () => {
+  try {
+    await connectDB();
+    app.listen(port, () => console.log(`listening on port ${port}`));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
