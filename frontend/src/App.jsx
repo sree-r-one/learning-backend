@@ -1,9 +1,26 @@
 import React from "react";
+import { LoginModal } from "./components";
+import { useState } from "react";
 
 const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle("dark");
+    console.log("button clicked");
+  };
+
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <div>
+        <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
+        <h1>Hello World</h1>
+        <p>This is my React app styled with Tailwind CSS</p>
+      </div>
+      <section className="bg-white dark:bg-gray-900">
+        <LoginModal />
+      </section>
     </div>
   );
 };
