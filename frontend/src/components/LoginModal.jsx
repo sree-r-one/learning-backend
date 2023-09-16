@@ -33,12 +33,12 @@ const LoginModal = () => {
 
   return (
     <div className="mx-auto flex w-full flex-col items-center justify-center p-3 md:h-screen md:max-w-md">
-      <div className="space-y-4 rounded-lg bg-white px-10 py-12 dark:bg-gray-700">
+      <div className="space-y-4 rounded-lg border border-gray-300 bg-white px-10 py-12 drop-shadow-sm dark:bg-gray-700">
         <h1 className="text-gray-900 dark:text-white">
           Sign in to your account
         </h1>
         <form onSubmit={handleSubmit}>
-          <div className="w-full space-y-2 p-2">
+          <div className="w-full space-y-2 ">
             <label
               htmlFor="email"
               className="block text-gray-900 dark:text-white"
@@ -55,7 +55,11 @@ const LoginModal = () => {
               placeholder="email@company.com"
             />
           </div>
-          <button type="submit" onClick={handleSubmit}>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="mt-4 w-full rounded bg-blue-400 p-2 text-white hover:bg-blue-500"
+          >
             Submit
           </button>
         </form>
