@@ -15,8 +15,6 @@ const App = () => {
     <div>
       <div>
         <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
-        <h1>Hello World</h1>
-        <p>This is my React app styled with Tailwind CSS</p>
       </div>
       <section className="bg-white dark:bg-gray-900">
         <LoginModal />
