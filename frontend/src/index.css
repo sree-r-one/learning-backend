@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-2xl font-bold text-gray-900;
+  }
+  .section-container {
+    @apply mx-auto items-center bg-gray-100 p-2 dark:bg-gray-800 md:h-screen md:max-w-md;
+  }
+
+  .text-dark-mode {
+    @apply text-gray-900 dark:text-white;
+  }
+}
