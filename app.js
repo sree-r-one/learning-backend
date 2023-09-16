@@ -16,7 +16,6 @@ app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-// middleware
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
